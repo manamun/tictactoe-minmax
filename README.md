@@ -1,4 +1,4 @@
-# komiya_mid-report
+# tictactoe-minmax
 tictactoeのゲームAI作成レポジトリ
 
 ### 内容
