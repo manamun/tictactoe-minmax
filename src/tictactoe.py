@@ -18,13 +18,13 @@ class Board:
     def __init__(self):
         #3*3の盤面を作成
         self.cell = [[MarkManager.EMPTY for i in range(3)] for j in range(3)]
-        self.if_first_player = True
+        self.is_first_player = True
 
     #ゲーム状況の判定メソッド
     def state(self):
         if self.won():
             return GameManager.OVER
-        elif len(self.possible_moves()) == 0:
+        elif len(self.get_possible_moves()) == 0:
             return GameManager.DROW
         else:
             return GameManager.ON
@@ -46,7 +46,7 @@ class Board:
                 self.cell[move[0]][move[1]] = MarkManager.X
             else:
                 self.cell[move[0]][move[1]] = MarkManager.O
-            self.is_is_first_player = not self.is_is_first_player
+            self.is_first_player = not self.is_first_player
 
     #勝利判定メソッド
     def won(self):
@@ -76,11 +76,11 @@ class Board:
     def rewind(self, move):
         #rewind the board
         self.cell[move[0]][move[1]] = MarkManager.EMPTY
-        self.if_first_player = not self.is_is_first_player
+        self.is_first_player = not self.is_first_player
     
     #盤面を表示するメソッド
     def __str__(self):
-        board_str = "\n"
+        board_str = ""
         for i in range(3):
             for j in range(3):
                 if self.cell[i][j] == MarkManager.X:
@@ -90,8 +90,7 @@ class Board:
                 else:
                     board_str += "/"
             board_str += "\n"
+
         return board_str
 
-board = Board()
-print(board)
 
